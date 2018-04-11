@@ -1,6 +1,9 @@
 
 **j-id** 提供 依托redis/zookeeper确定机器序号，基于[snowflake](https://github.com/twitter/snowflake)算法的分布式ID生成器。
 
+● require [jdk 1.8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
+● require [slf4j](http://www.slf4j.org/download.html)
 
 ### Maven: ###
 
