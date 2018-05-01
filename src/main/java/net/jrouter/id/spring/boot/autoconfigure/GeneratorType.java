@@ -32,6 +32,12 @@ public enum GeneratorType {
     /**
      * Directly read local file as identifier.
      */
-    LOCAL
+    LOCAL,
+    /**
+     * Manually write application identifier.
+     *
+     * @see IdServiceProperties#manualWorkerId
+     */
+    MANUAL
 
 }

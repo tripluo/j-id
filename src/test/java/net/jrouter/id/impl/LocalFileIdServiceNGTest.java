@@ -35,7 +35,7 @@ public class LocalFileIdServiceNGTest {
     @BeforeMethod
     public void setUpMethod() throws Exception {
         IdServiceProperties props = new IdServiceProperties();
-        props.setLocalFile("/distributed.Id");
+        props.setLocalFile("distributed.Id.test");
         localFileIdServicel = new LocalFileIdService(props);
     }
 

@@ -5,13 +5,15 @@
 
 ● require [slf4j](http://www.slf4j.org/download.html)
 
+◇ [changelog](https://github.com/innjj/j-id/blob/master/src/main/resources/changelog.txt)
+
 ### Maven: ###
 
 ```xml
 <dependency>
     <groupId>net.jrouter</groupId>
     <artifactId>j-id</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
 </dependency>
 ```
 ### spring-boot配置: ###
@@ -28,7 +30,8 @@ distributed.id.localFile=localhost
 distributed.id.redisHashKey=distributed.id
 # default: distributed.id
 distributed.id.zkPath=distributed.id
-#default: redis, optional: (redis/zookeeper/local)
+#default: redis, optional: (redis/zookeeper/local/manual)
 distributed.id.generatorType=redis
-#distributed.id.generatorType=zookeeper
+#default: 0, effective when "generatorType=manual"
+distributed.id.manualWorkerId=100
 ```

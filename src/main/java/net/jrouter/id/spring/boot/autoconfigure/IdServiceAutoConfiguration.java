@@ -58,7 +58,7 @@ public class IdServiceAutoConfiguration {
     @Configuration
     @ConditionalOnProperty(prefix = IdServiceProperties.DISTRIBUTED_ID, name = "generatorType", havingValue = "redis",
             matchIfMissing = true)
-    static class RedisKeyConfiguration {
+    static class RedisWorkerIdConfiguration {
 
         @Autowired
         private IdServiceProperties idServiceProperties;
@@ -87,8 +87,8 @@ public class IdServiceAutoConfiguration {
         }
 
         @Bean
-        @ConditionalOnMissingBean(name = "redisKeyGenerator")
-        IdGenerator<Long> keyGenerator(RedisTemplate<String, Long> idServiceRedisTemplate) {
+        @ConditionalOnMissingBean(name = "redisWorkerIdGenerator")
+        IdGenerator<Long> workerIdGenerator(RedisTemplate<String, Long> idServiceRedisTemplate) {
             return new RedisIdService(idServiceRedisTemplate, idServiceProperties);
         }
     }
@@ -96,7 +96,7 @@ public class IdServiceAutoConfiguration {
     @Configuration
     @ConditionalOnProperty(prefix = IdServiceProperties.DISTRIBUTED_ID, name = "generatorType",
             havingValue = "zookeeper")
-    static class ZkKeyConfiguration {
+    static class ZkWorkerIdConfiguration {
 
         @Autowired
         private IdServiceProperties idServiceProperties;
@@ -105,8 +105,8 @@ public class IdServiceAutoConfiguration {
         private CuratorFramework curatorFramework;
 
         @Bean
-        @ConditionalOnMissingBean(name = "zkKeyGenerator")
-        IdGenerator<Long> keyGenerator() {
+        @ConditionalOnMissingBean(name = "zkWorkerIdGenerator")
+        IdGenerator<Long> workerIdGenerator() {
             return new CuratorIdService(curatorFramework, idServiceProperties);
         }
     }
@@ -114,35 +114,56 @@ public class IdServiceAutoConfiguration {
     @Configuration
     @ConditionalOnProperty(prefix = IdServiceProperties.DISTRIBUTED_ID, name = "generatorType",
             havingValue = "local")
-    static class LocalKeyConfiguration {
+    static class LocalWorkerIdConfiguration {
 
         @Autowired
         private IdServiceProperties idServiceProperties;
 
         @Bean
-        @ConditionalOnMissingBean(name = "localKeyGenerator")
-        IdGenerator<Long> keyGenerator() {
+        @ConditionalOnMissingBean(name = "localWorkerIdGenerator")
+        IdGenerator<Long> workerIdGenerator() {
             return new LocalFileIdService(idServiceProperties);
         }
     }
 
-    @Bean
-    IdGenerator<Long> idGenerator(IdGenerator<Long> keyGenerator) {
-        Long workerId = null;
-        if (idServiceProperties.getGeneratorType() == LOCAL) {
-            workerId = keyGenerator.generateId();
-        } else {
-            List<IdGenerator<Long>> keyGenerators = new ArrayList<>(2);
-            if (idServiceProperties.isEnableLocalFileStorager()) {
-                //add local file file
-                keyGenerators.add(new LocalFileIdService(idServiceProperties));
-            }
-            keyGenerators.add(keyGenerator);
-            workerId = new CompositeIdGenerator<>(keyGenerators).generateId();
+    @Configuration
+    @ConditionalOnProperty(prefix = IdServiceProperties.DISTRIBUTED_ID, name = "generatorType",
+            havingValue = "manual")
+    static class ManualWorkerIdConfiguration {
+
+        @Autowired
+        private IdServiceProperties idServiceProperties;
+
+        @Bean
+        @ConditionalOnMissingBean(name = "manualWorkerIdGenerator")
+        IdGenerator<Long> workerIdGenerator() {
+            return () -> idServiceProperties.getManualWorkerId();
         }
-        Assert.notNull(workerId, String.format("Can't generate key from [%s]", keyGenerator.toString()));
+    }
+
+    @Bean
+    IdGenerator<Long> idGenerator(IdGenerator<Long> workerIdGenerator) {
+        Long workerId = null;
+        switch (idServiceProperties.getGeneratorType()) {
+            case LOCAL:
+            case MANUAL: {
+                workerId = workerIdGenerator.generateId();
+                break;
+            }
+            default: {
+                List<IdGenerator<Long>> workerIdGenerators = new ArrayList<>(2);
+                if (idServiceProperties.isEnableLocalFileStorager()) {
+                    //add local file file
+                    workerIdGenerators.add(new LocalFileIdService(idServiceProperties));
+                }
+                workerIdGenerators.add(workerIdGenerator);
+                workerId = new CompositeIdGenerator<>(workerIdGenerators).generateId();
+                break;
+            }
+        }
+        Assert.notNull(workerId, String.format("Can't generate workerId from [%s]", workerIdGenerator.toString()));
         if (log.isDebugEnabled()) {
-            log.debug("Use key [{}] for id generator.");
+            log.debug("Use workerId [{}] for id generator.");
         }
         return new IdGenerator2018(workerId);
     }

@@ -54,7 +54,7 @@ public class RedisIdService implements IdGenerator<Long>, IdStorager<Long> {
 
     @Override
     public Long generateId() {
-        String key = properties.getKeyGenerator().generateId();
+        String key = properties.getWorkerNameGenerator().generateId();
         Long id = getLong(key);
         out:
         if (id == null || id < 1) {
@@ -77,7 +77,7 @@ public class RedisIdService implements IdGenerator<Long>, IdStorager<Long> {
                         break out;
                     }
                 }
-                throw new IllegalArgumentException(String.format("Can't get right number from key [%s]", key));
+                throw new IllegalArgumentException(String.format("Can't get right number from worker name key [%s]", key));
             }
         }
         return id;
@@ -105,6 +105,6 @@ public class RedisIdService implements IdGenerator<Long>, IdStorager<Long> {
 
     @Override
     public void storeId(Long id) {
-        boundHashOperations.putIfAbsent(properties.getKeyGenerator().generateId(), id);
+        boundHashOperations.putIfAbsent(properties.getWorkerNameGenerator().generateId(), id);
     }
 }

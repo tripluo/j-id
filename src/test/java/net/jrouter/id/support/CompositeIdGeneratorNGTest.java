@@ -60,7 +60,7 @@ public class CompositeIdGeneratorNGTest {
         localFile1 = new LocalFileIdService(props);
 
         IdServiceProperties props2 = new IdServiceProperties();
-        props2.setLocalFile("/test.id.txt");
+        props2.setLocalFile("test.id.txt");
         localFile2 = new LocalFileIdService(props2);
 
         //preferred local2->local1->zk

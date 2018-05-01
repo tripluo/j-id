@@ -5,7 +5,7 @@
     <groupId>net.jrouter</groupId>
     <artifactId>j-id</artifactId>
     <packaging>jar</packaging>
-    <version>1.1</version>
+    <version>1.2</version>
     <name>J-Id</name>
     <inceptionYear>2018</inceptionYear>
     <url>https://github.com/innjj/j-id/</url>
@@ -244,7 +244,7 @@
     </profiles>
     <properties>
         <spring-boot.version>2.0.1.RELEASE</spring-boot.version>
-        <pmd.version>6.1.0</pmd.version>
+        <pmd.version>6.2.0</pmd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
     </properties>

@@ -16,6 +16,7 @@
  */
 package net.jrouter.id.spring.boot.autoconfigure;
 
+import net.jrouter.id.IdGenerator;
 import static net.jrouter.id.support.IdServiceProperties.DISTRIBUTED_ID;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -36,5 +37,13 @@ public class IdServiceProperties extends net.jrouter.id.support.IdServicePropert
      * 是否存储本地文件。
      */
     private boolean enableLocalFileStorager = true;
+
+    /**
+     * Manual write the worker id.
+     *
+     * @see GeneratorType#MANUAL
+     * @see IdGenerator#MAX_GLOBAL_WORKER_ID
+     */
+    private long manualWorkerId = 0;
 
 }

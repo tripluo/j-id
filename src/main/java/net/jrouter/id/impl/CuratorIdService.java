@@ -67,7 +67,7 @@ public class CuratorIdService implements IdGenerator<Long> {
     public Long generateId() {
         String parent = ZKPaths.makePath(ZKPaths.PATH_SEPARATOR, properties.getZkPath());
         String seqNodePath = ZKPaths.makePath(parent, nodeName);
-        String nodeData = properties.getKeyGenerator().generateId();
+        String nodeData = properties.getWorkerNameGenerator().generateId();
         String nodePath = ZKPaths.makePath(parent, nodeData);
         try {
             curatorFramework.checkExists().creatingParentsIfNeeded().forPath(seqNodePath);
@@ -92,7 +92,7 @@ public class CuratorIdService implements IdGenerator<Long> {
                             break out;
                         }
                     }
-                    throw new IllegalArgumentException(String.format("Can't get right node from key data [%s]", nodeData));
+                    throw new IllegalArgumentException(String.format("Can't get right node from worker name data [%s]", nodeData));
                 }
                 val = curatorFramework.create().withMode(CreateMode.PERSISTENT_SEQUENTIAL).forPath(seqNodePath, nodeData.getBytes(charset));
                 //set for view if curator client is not closed
