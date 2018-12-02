@@ -27,11 +27,12 @@ import org.testng.annotations.Test;
 public class HostAndPortNGTest {
 
     /**
-     * Test of getLocalHostQuietly method, of class HostAndPort.
+     * Test of getLocalHostAddress method, of class HostAndPort.
      */
     @Test
     public void testGetLocalHostQuietly() {
-        log.info("Get LOCALHOST_STRING : {}", HostAndPort.LOCALHOST_STRING);
+        log.info("Get LOCALHOST_ADDRESS : {}", HostAndPort.LOCALHOST_ADDRESS);
+        log.info("Get NET_ADDRESS : {}", HostAndPort.NET_ADDRESS);
     }
 
     /**

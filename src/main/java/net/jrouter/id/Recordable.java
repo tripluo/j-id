@@ -27,6 +27,17 @@ import java.util.List;
 public interface Recordable<ID> {
 
     /**
+     * Add Record.
+     *
+     * @param id ID.
+     *
+     * @return add succeeded or not.
+     */
+    default boolean addRecord(ID id) {
+        return false;
+    }
+
+    /**
      * 返回ID集合。
      *
      * @return ID集合。

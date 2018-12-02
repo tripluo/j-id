@@ -31,7 +31,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * CompositeIdGeneratorNGTest
+ * CompositeIdGeneratorNGTest.
  */
 @Slf4j
 public class CompositeIdGeneratorNGTest {

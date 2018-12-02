@@ -18,10 +18,12 @@ package net.jrouter.id.spring.boot.autoconfigure;
 
 import lombok.extern.slf4j.Slf4j;
 import net.jrouter.id.IdGenerator;
+import net.jrouter.id.Main;
 import net.jrouter.id.impl.IdGenerator2018;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterMethod;
@@ -37,7 +39,8 @@ import org.testng.annotations.Test;
 @Slf4j
 public class IdServiceAutoConfiguration_Manual_NGTest extends AbstractTestNGSpringContextTests {
 
-    @SpringBootApplication(scanBasePackages = "net.jrouter.id")
+    @SpringBootApplication(scanBasePackages = Main.BASE_PACKAGE)
+    @ComponentScan
     static class Config {
 
     }

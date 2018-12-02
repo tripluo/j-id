@@ -44,7 +44,7 @@ public class CuratorIdServiceNGTest {
 
     private CuratorIdService curatorIdService;
 
-    @BeforeMethod(timeOut = 5000)
+    @BeforeMethod(timeOut = 30000)
     public void setUpMethod() throws Exception {
         assertNotNull(client);
         client.start();

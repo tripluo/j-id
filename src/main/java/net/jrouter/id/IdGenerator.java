@@ -28,15 +28,14 @@ import static net.jrouter.id.impl.IdWorker.DEFAULT_WORKERID_BITS;
 public interface IdGenerator<ID> {
 
     /**
+     * Max 1023 workers[0,1023].
+     */
+    long MAX_GLOBAL_WORKER_ID = -1L ^ (-1L << (DEFAULT_WORKERID_BITS + DEFAULT_DATACENTERID_BITS));
+
+    /**
      * Generate a new ID.
      *
      * @return the generated ID.
      */
     ID generateId();
-
-    /**
-     * Max 1023 workers[0,1023].
-     */
-    long MAX_GLOBAL_WORKER_ID = -1L ^ (-1L << (DEFAULT_WORKERID_BITS + DEFAULT_DATACENTERID_BITS));
-
 }

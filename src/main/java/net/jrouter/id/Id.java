@@ -23,14 +23,15 @@ import java.io.Serializable;
  *
  * @param <ID> ID type.
  */
-public interface Id<ID> extends Serializable {//NOPMD for ShortClassName
+public interface Id<ID> extends Serializable {//NOPMD ShortClassName
 
     /**
      * Set id.
      *
      * @param id ID object.
      */
-    void setId(ID id);
+    default void setId(ID id) {
+    }
 
     /**
      * Get id.
@@ -38,5 +39,4 @@ public interface Id<ID> extends Serializable {//NOPMD for ShortClassName
      * @return ID object.
      */
     ID getId();
-
 }

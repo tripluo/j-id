@@ -16,26 +16,37 @@
  */
 package net.jrouter.id.support;
 
-import java.io.Serializable;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * HostAndPort.
  */
-public class HostAndPort implements Serializable {
+public class HostAndPort {
 
-    /** local host string */
-    public static final String LOCALHOST_STRING = getLocalHostQuietly();
+    /** local host address */
+    public static final String LOCALHOST_ADDRESS = getLocalHostAddress();
+
+    /** net ip address */
+    public static final String NET_ADDRESS = getNetAddress();
 
     public static boolean isLocalHost(String host) {
-        return host.equals("127.0.0.1") || host.startsWith("localhost") || host.equals("0.0.0.0")
+        if (host == null || host.isEmpty()) {
+            return false;
+        }
+        return "0.0.0.0".equals(host)
+                || "127.0.0.1".equals(host)
+                || "localhost".equalsIgnoreCase(host)
                 || host.startsWith("169.254")
-                || host.startsWith("::1") || host.startsWith("0:0:0:0:0:0:0:1");
+                || host.startsWith("::1")
+                || host.startsWith("0:0:0:0:0:0:0:1");
     }
 
-    public static String getLocalHostQuietly() {
+    public static String getLocalHostAddress() {
         String localAddress;
         try {
             localAddress = InetAddress.getLocalHost().getHostAddress();
@@ -44,5 +55,53 @@ public class HostAndPort implements Serializable {
             localAddress = "localhost";
         }
         return localAddress;
+    }
+
+    public static String getNetAddress() {
+        InetAddress address = getInetAddresses();
+        if (address != null) {
+            return address.getHostAddress();
+        }
+        return getLocalHostAddress();
+    }
+
+    private static boolean isValidAddress(InetAddress address) {
+        if (address == null || address.isLoopbackAddress()) {
+            return false;
+        }
+        String host = address.getHostAddress();
+        if (host == null || host.isEmpty()) {
+            return false;
+        }
+        return !isLocalHost(host);
+    }
+
+    public static InetAddress getInetAddresses() {
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            if (interfaces != null) {
+                while (interfaces.hasMoreElements()) {
+                    try {
+                        NetworkInterface network = interfaces.nextElement();
+                        Enumeration<InetAddress> addresses = network.getInetAddresses();
+                        while (addresses.hasMoreElements()) {
+                            try {
+                                InetAddress address = addresses.nextElement();
+                                if (isValidAddress(address)) {
+                                    return address;
+                                }
+                            } catch (Throwable e) {//NOPMD AvoidCatchingThrowable
+                                //ignore
+                            }
+                        }
+                    } catch (Throwable e) {//NOPMD AvoidCatchingThrowable
+                        //ignore
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            //ignore
+        }
+        return null;
     }
 }

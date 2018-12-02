@@ -66,7 +66,7 @@ public class IdWorker {
         }
         this.workerId = workerId;
         this.datacenterId = datacenterId;
-        LOG.info(String.format("worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d", timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId));
+        LOG.info(String.format("worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerId %d, datacenterId %d", timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId, datacenterId));
     }
 
     /**

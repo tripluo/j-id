@@ -162,10 +162,11 @@ public class IdServiceAutoConfiguration {
             }
         }
         Assert.notNull(workerId, String.format("Can't generate workerId from [%s]", workerIdGenerator.toString()));
+        IdGenerator<Long> idGen = new IdGenerator2018(workerId);
         if (log.isDebugEnabled()) {
-            log.debug("Use workerId [{}] for id generator.");
+            log.debug("Use workerId [{}] for id generator [{}]", workerId, idGen);
         }
-        return new IdGenerator2018(workerId);
+        return idGen;
     }
 
 }

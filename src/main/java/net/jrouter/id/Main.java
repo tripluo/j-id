@@ -26,11 +26,20 @@ import net.jrouter.id.support.HostAndPort;
  */
 public class Main {//NOPMD
 
+    /** base package */
+    public static final String BASE_PACKAGE = "net.jrouter.id";
+
+    /** version */
+    public static final String VERSION = "1.3";
+
+    //log
     private static final Logger LOG = Logger.getLogger(Main.class.getName());
 
     //main
     public static void main(String[] args) {
-        System.out.println("localhost: " + HostAndPort.LOCALHOST_STRING);//NOPMD
+        System.out.println(String.format("%s: %s", BASE_PACKAGE, VERSION));//NOPMD
+        System.out.println("localhost: " + HostAndPort.LOCALHOST_ADDRESS);//NOPMD
+        System.out.println("net address: " + HostAndPort.NET_ADDRESS);//NOPMD
         System.out.println("Usage: [long]");//NOPMD
         if (args.length > 0) {
             long id = Long.parseLong(args[0]);

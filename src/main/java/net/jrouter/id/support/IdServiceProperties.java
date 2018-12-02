@@ -46,6 +46,6 @@ public class IdServiceProperties {
     /**
      * 生成一个代表性的标示字段（如IP）。
      */
-    private IdGenerator<String> workerNameGenerator = () -> HostAndPort.LOCALHOST_STRING;
+    private IdGenerator<String> workerNameGenerator = () -> HostAndPort.NET_ADDRESS;
 
 }

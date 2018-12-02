@@ -43,4 +43,9 @@ public class IdGenerator2018 extends IdWorker implements IdGenerator<Long> {
     public Long generateId() {
         return nextId();
     }
+
+    @Override
+    public String toString() {
+        return "IdGenerator2018{" + "d20180101=" + d20180101 + '}';
+    }
 }

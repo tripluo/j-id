@@ -92,7 +92,7 @@ public class CuratorIdService implements IdGenerator<Long> {
                             break out;
                         }
                     }
-                    throw new IllegalArgumentException(String.format("Can't get right node from worker name data [%s]", nodeData));
+                    throw new IllegalArgumentException(String.format("Can't get right node from worker name data [%s]", nodeData), e);
                 }
                 val = curatorFramework.create().withMode(CreateMode.PERSISTENT_SEQUENTIAL).forPath(seqNodePath, nodeData.getBytes(charset));
                 //set for view if curator client is not closed
@@ -136,7 +136,7 @@ public class CuratorIdService implements IdGenerator<Long> {
     /**
      * Find first children node name with matched data.
      */
-    private String getMatchedChildrenNode(String path, String data) throws Exception {//NOPMD for SignatureDeclareThrowsException
+    private String getMatchedChildrenNode(String path, String data) throws Exception {//NOPMD SignatureDeclareThrowsException
         return curatorFramework.getChildren().forPath(path).stream()
                 .filter(v -> data.equals(getData(ZKPaths.makePath(path, v))))
                 .findFirst()

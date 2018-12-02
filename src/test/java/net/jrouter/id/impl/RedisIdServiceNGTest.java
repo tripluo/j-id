@@ -17,6 +17,7 @@
 package net.jrouter.id.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import net.jrouter.id.Main;
 import net.jrouter.id.spring.boot.autoconfigure.IdServiceAutoConfiguration;
 import net.jrouter.id.support.IdServiceProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -48,9 +49,8 @@ public class RedisIdServiceNGTest extends AbstractTestNGSpringContextTests {
      *
      * @see IdServiceAutoConfiguration
      */
-    @SpringBootApplication(scanBasePackages = "net.jrouter.id", exclude = IdServiceAutoConfiguration.class)
-    @ComponentScan(excludeFilters = {
-        //@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = IdServiceAutoConfiguration.class)
+    @SpringBootApplication(scanBasePackages = Main.BASE_PACKAGE, exclude = IdServiceAutoConfiguration.class)
+    @ComponentScan(excludeFilters = { //@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = IdServiceAutoConfiguration.class)
     })
     static class Config {
 

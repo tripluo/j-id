@@ -3,9 +3,16 @@ J-ID CHANGELOG
 ==========================
 https://github.com/innjj/j-id/
 
+Changes in version 1.3 (2018-12-02)
+---------------------------------------
+* 修改Id接口setId方法为默认方法。
+* Recordable接口添加addRecord默认方法。
+* HostAndPort新增net address变量，获取非local的网络地址。
+* 完善测试用例。
+
 Changes in version 1.2 (2018-05-01)
 ---------------------------------------
-* GeneratorType新增MANUAL，可于配置文件application.propertieszhogn指定manualWorkerId。
+* GeneratorType新增MANUAL，可于配置文件application.properties中指定manualWorkerId。
 * 重构IdServiceAutoConfiguration部分命名。
 * 完善测试用例。
 
