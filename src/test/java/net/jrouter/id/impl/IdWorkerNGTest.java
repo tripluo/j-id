@@ -14,9 +14,10 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.impl;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 
 /**

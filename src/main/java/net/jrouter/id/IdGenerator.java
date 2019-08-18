@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id;
 
 import static net.jrouter.id.impl.IdWorker.DEFAULT_DATACENTERID_BITS;

@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.spring.boot.autoconfigure;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

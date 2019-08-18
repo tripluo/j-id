@@ -1,7 +1,13 @@
 
 J-ID CHANGELOG
 ==========================
-https://github.com/innjj/j-id/
+https://github.com/tripluo/j-id/
+
+Changes in version 1.4 (2019-08-18)
+* 重构配置前缀distributed.id为net.jrouter.id。
+* 规范代码格式。
+* 完善测试用例。
+
 
 Changes in version 1.3 (2018-12-02)
 ---------------------------------------
@@ -9,6 +15,7 @@ Changes in version 1.3 (2018-12-02)
 * Recordable接口添加addRecord默认方法。
 * HostAndPort新增net address变量，获取非local的网络地址。
 * 完善测试用例。
+
 
 Changes in version 1.2 (2018-05-01)
 ---------------------------------------

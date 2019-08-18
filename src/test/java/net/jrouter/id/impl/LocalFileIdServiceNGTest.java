@@ -14,12 +14,13 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.impl;
 
 import java.nio.file.Files;
-import net.jrouter.id.support.IdServiceProperties;
 import lombok.extern.slf4j.Slf4j;
-import static org.testng.Assert.*;
+import net.jrouter.id.support.IdServiceProperties;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

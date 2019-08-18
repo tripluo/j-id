@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.impl;
 
 import java.util.Objects;
@@ -58,7 +59,7 @@ public class RedisIdService implements IdGenerator<Long>, IdStorager<Long> {
         Long id = getLong(key);
         out:
         if (id == null || id < 1) {
-            //get false if aleady has key
+            //get false if already has key
             if (boundHashOperations.putIfAbsent(key, 0)) {
                 id = boundHashOperations.increment(countKey, 1);
                 boundHashOperations.put(key, id);

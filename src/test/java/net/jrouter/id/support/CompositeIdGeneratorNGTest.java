@@ -14,14 +14,15 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.support;
 
 import java.nio.file.Files;
+import lombok.extern.slf4j.Slf4j;
 import net.jrouter.id.IdGenerator;
 import net.jrouter.id.impl.CuratorIdService;
 import static net.jrouter.id.impl.CuratorIdServiceNGTest.LOCAL_ZK;
 import net.jrouter.id.impl.LocalFileIdService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;

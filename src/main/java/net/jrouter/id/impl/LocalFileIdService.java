@@ -14,20 +14,17 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.impl;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 import net.jrouter.id.IdGenerator;
 import net.jrouter.id.support.IdServiceProperties;
 import net.jrouter.id.support.IdStorager;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Use local file to store and get Id.

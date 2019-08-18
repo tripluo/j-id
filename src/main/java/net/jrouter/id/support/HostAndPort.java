@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.support;
 
 import java.net.InetAddress;
@@ -90,11 +91,11 @@ public class HostAndPort {
                                 if (isValidAddress(address)) {
                                     return address;
                                 }
-                            } catch (Throwable e) {//NOPMD AvoidCatchingThrowable
+                            } catch (Throwable e) { //NOPMD AvoidCatchingThrowable
                                 //ignore
                             }
                         }
-                    } catch (Throwable e) {//NOPMD AvoidCatchingThrowable
+                    } catch (Throwable e) { //NOPMD AvoidCatchingThrowable
                         //ignore
                     }
                 }

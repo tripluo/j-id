@@ -5,7 +5,7 @@
 
 ● require [slf4j](http://www.slf4j.org/download.html)
 
-◇ [changelog](https://github.com/innjj/j-id/blob/master/src/main/resources/changelog.txt)
+◇ [changelog](https://github.com/tripluo/j-id/blob/master/src/main/resources/changelog.txt)
 
 ### Maven: ###
 
@@ -13,25 +13,25 @@
 <dependency>
     <groupId>net.jrouter</groupId>
     <artifactId>j-id</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
 </dependency>
 ```
 ### spring-boot配置: ###
 
-Sample [application.properties](https://github.com/innjj/j-id/blob/master/src/test/resources/application.properties)
+Sample [application.properties](https://github.com/tripluo/j-id/blob/master/src/test/resources/application.properties)
 
 ```properties
 #id service properties (IdServiceProperties)
 # default: true
-distributed.id.enableLocalFileStorager=false
+net.jrouter.id.enable-local-file-storager=false
 # default: /distributed.id
-distributed.id.localFile=localhost
+net.jrouter.id.local-file=localhost
 # default: distributed.id
-distributed.id.redisHashKey=distributed.id
+net.jrouter.id.redis-hash-key=distributed.id
 # default: distributed.id
-distributed.id.zkPath=distributed.id
+net.jrouter.id.zk-path=distributed.id
 #default: redis, optional: (redis/zookeeper/local/manual)
-distributed.id.generatorType=redis
+net.jrouter.id.generator-type=redis
 #default: 0, effective when "generatorType=manual"
-distributed.id.manualWorkerId=100
+net.jrouter.id.manual-worker-id=100
 ```

@@ -14,14 +14,15 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.impl;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 import net.jrouter.id.IdGenerator;
 import net.jrouter.id.support.IdServiceProperties;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.utils.ZKPaths;
 import org.apache.zookeeper.CreateMode;
@@ -74,7 +75,7 @@ public class CuratorIdService implements IdGenerator<Long> {
             String val = getMatchedChildrenNode(parent, nodeData);
             out:
             if (val == null || val.length() < SEQUENTIAL_NUMBER_LENGTH) {
-                //mutil-create conflict may throws NodeExistsException
+                //multi-create conflict may throws NodeExistsException
                 try {
                     curatorFramework.create().withMode(CreateMode.EPHEMERAL).forPath(nodePath, new byte[0]);
                 } catch (KeeperException.NodeExistsException e) {
@@ -136,7 +137,7 @@ public class CuratorIdService implements IdGenerator<Long> {
     /**
      * Find first children node name with matched data.
      */
-    private String getMatchedChildrenNode(String path, String data) throws Exception {//NOPMD SignatureDeclareThrowsException
+    private String getMatchedChildrenNode(String path, String data) throws Exception { //NOPMD SignatureDeclareThrowsException
         return curatorFramework.getChildren().forPath(path).stream()
                 .filter(v -> data.equals(getData(ZKPaths.makePath(path, v))))
                 .findFirst()

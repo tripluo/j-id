@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.support;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import net.jrouter.id.IdGenerator;
 import lombok.extern.slf4j.Slf4j;
+import net.jrouter.id.IdGenerator;
 
 /**
  * Composite IdService, preferred first non-null ID generator and store ID data back to null ID generators.

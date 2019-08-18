@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.impl;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +33,7 @@ import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertNotNull;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -50,8 +51,7 @@ public class RedisIdServiceNGTest extends AbstractTestNGSpringContextTests {
      * @see IdServiceAutoConfiguration
      */
     @SpringBootApplication(scanBasePackages = Main.BASE_PACKAGE, exclude = IdServiceAutoConfiguration.class)
-    @ComponentScan(excludeFilters = { //@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = IdServiceAutoConfiguration.class)
-    })
+    @ComponentScan
     static class Config {
 
         @Autowired

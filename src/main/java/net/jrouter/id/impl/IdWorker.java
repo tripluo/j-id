@@ -1,4 +1,5 @@
 /** Copyright 2010-2012 Twitter, Inc. */
+
 package net.jrouter.id.impl;
 
 import java.util.logging.Logger;
@@ -74,7 +75,7 @@ public class IdWorker {
      *
      * @return the next id.
      */
-    public synchronized long nextId() {//NOPMD
+    public synchronized long nextId() { //NOPMD
         long timestamp = timeGen();
         if (timestamp < lastTimestamp) {
             LOG.severe(String.format("clock is moving backwards.  Rejecting requests until %d.", lastTimestamp));

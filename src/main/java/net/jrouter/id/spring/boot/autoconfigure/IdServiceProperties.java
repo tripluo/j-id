@@ -14,19 +14,21 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.spring.boot.autoconfigure;
 
 import net.jrouter.id.IdGenerator;
-import static net.jrouter.id.support.IdServiceProperties.DISTRIBUTED_ID;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * Properties of IdService.
  */
-@ConfigurationProperties(prefix = DISTRIBUTED_ID)
+@ConfigurationProperties(prefix = IdServiceProperties.JID_PREFIX)
 @lombok.Getter
 @lombok.Setter
 public class IdServiceProperties extends net.jrouter.id.support.IdServiceProperties {
+
+    public static final String JID_PREFIX = "net.jrouter.id";
 
     /**
      * Generator Type. Using redis by default.

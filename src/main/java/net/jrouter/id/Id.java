@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id;
 
 import java.io.Serializable;
@@ -23,7 +24,7 @@ import java.io.Serializable;
  *
  * @param <ID> ID type.
  */
-public interface Id<ID> extends Serializable {//NOPMD ShortClassName
+public interface Id<ID> extends Serializable { //NOPMD ShortClassName
 
     /**
      * Set id.

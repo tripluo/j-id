@@ -14,17 +14,17 @@
  * limitations under the License.
  *
  */
+
 package net.jrouter.id.spring.boot.autoconfigure;
 
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import net.jrouter.id.IdGenerator;
-import net.jrouter.id.impl.IdGenerator2018;
 import net.jrouter.id.impl.CuratorIdService;
+import net.jrouter.id.impl.IdGenerator2018;
 import net.jrouter.id.impl.LocalFileIdService;
 import net.jrouter.id.impl.RedisIdService;
-import static net.jrouter.id.spring.boot.autoconfigure.GeneratorType.*;
 import net.jrouter.id.support.CompositeIdGenerator;
 import org.apache.curator.framework.CuratorFramework;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +56,7 @@ public class IdServiceAutoConfiguration {
     }
 
     @Configuration
-    @ConditionalOnProperty(prefix = IdServiceProperties.DISTRIBUTED_ID, name = "generatorType", havingValue = "redis",
+    @ConditionalOnProperty(prefix = IdServiceProperties.JID_PREFIX, name = "generator-type", havingValue = "redis",
             matchIfMissing = true)
     static class RedisWorkerIdConfiguration {
 
@@ -94,8 +94,7 @@ public class IdServiceAutoConfiguration {
     }
 
     @Configuration
-    @ConditionalOnProperty(prefix = IdServiceProperties.DISTRIBUTED_ID, name = "generatorType",
-            havingValue = "zookeeper")
+    @ConditionalOnProperty(prefix = IdServiceProperties.JID_PREFIX, name = "generator-type", havingValue = "zookeeper")
     static class ZkWorkerIdConfiguration {
 
         @Autowired
@@ -112,8 +111,7 @@ public class IdServiceAutoConfiguration {
     }
 
     @Configuration
-    @ConditionalOnProperty(prefix = IdServiceProperties.DISTRIBUTED_ID, name = "generatorType",
-            havingValue = "local")
+    @ConditionalOnProperty(prefix = IdServiceProperties.JID_PREFIX, name = "generator-type", havingValue = "local")
     static class LocalWorkerIdConfiguration {
 
         @Autowired
@@ -127,8 +125,7 @@ public class IdServiceAutoConfiguration {
     }
 
     @Configuration
-    @ConditionalOnProperty(prefix = IdServiceProperties.DISTRIBUTED_ID, name = "generatorType",
-            havingValue = "manual")
+    @ConditionalOnProperty(prefix = IdServiceProperties.JID_PREFIX, name = "generator-type", havingValue = "manual")
     static class ManualWorkerIdConfiguration {
 
         @Autowired
